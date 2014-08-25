@@ -76,4 +76,11 @@ public class SketchView extends View {
             canvas.drawLines(line.asArray(), paint);
         }
     }
+
+    public void undo() {
+        if (!lines.isEmpty()) {
+            lines.pop();
+            invalidate();
+        }
+    }
 }
