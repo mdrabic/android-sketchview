@@ -44,7 +44,7 @@ public class SketchView extends View {
 
         switch(event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                line = new Line();
+                line = new Line(paint);
                 line.addPoint(event.getX(), event.getY());
                 lines.push(line);
                 handled = true;
@@ -63,6 +63,7 @@ public class SketchView extends View {
                 line.addPoint(event.getX(), event.getY());
                 lines.push(line);
                 invalidate();
+                paint.reset();
                 handled = true;
                 break;
         }
@@ -73,7 +74,7 @@ public class SketchView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         for (Line line : lines) {
-            canvas.drawLines(line.asArray(), paint);
+            canvas.drawLines(line.asArray(), line.getPaint());
         }
     }
 
@@ -82,5 +83,9 @@ public class SketchView extends View {
             lines.pop();
             invalidate();
         }
+    }
+
+    public void setColor(int color) {
+        paint.setColor(color);
     }
 }

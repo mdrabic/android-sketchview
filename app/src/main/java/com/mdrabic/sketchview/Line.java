@@ -1,6 +1,9 @@
 package com.mdrabic.sketchview;
 
+import android.graphics.Paint;
 import android.graphics.PointF;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,11 @@ import java.util.List;
 public class Line {
 
     private List<PointF> points = new ArrayList<PointF>();
+    private Paint paint;
+
+    public Line(@NotNull Paint paint) {
+        this.paint = paint;
+    }
 
     /**
      * Add a new point to this line
@@ -37,5 +45,13 @@ public class Line {
             }
         }
         return line;
+    }
+
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    public Paint getPaint() {
+        return paint;
     }
 }
